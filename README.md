@@ -1,4 +1,5 @@
 First Page is the Signup Page.Here I have been give Validations for email,phone number and password using regular expressions.
+
 If email,passsword,phone numbers are incorrect ,it displays a error message.
 If password is not equal to confirm password ,it displays error message like password don't matched;
 All the user details are stored in localstorage.
