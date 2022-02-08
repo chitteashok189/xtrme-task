@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            div{
+                background-color: aquamarine;
+                height: 700px;
+            }
+            .login{
+                width: 370px;
+                height: 240px;
+                position: relative;
+                top:100px;
+                left:400px;
+                background-color: white;
+                box-shadow: 1px 1px 10px lightcyan;
+            }
+            h1{
+                text-align: center;
+            }
+            input{
+               width: 300px;
+               padding: 7px;
+               margin-top: 20px;
+               margin-left: 20px;
+               outline: 0;
+           }
+           button{
+               width:130px;
+               border: 0;
+               padding: 8px;
+               margin-left: 120px;
+               margin-top: 20px;
+               background-color: aquamarine;
+               color: black;
+               cursor: pointer;
+               font-weight: bold;
+          
+           }
+           p{
+               color: red;
+               text-align: center;
+           }
+        </style>
+
+    </head>
+    <body>
+        <div>
+        <div class="login">
+            <h1>Login</h1>
+            <input type="email" id="email" placeholder="Enter Email">
+            <input type="password" id="pass" placeholder="Enter Password"><br>
+            <button onclick="validate()">submit</button>
+            <p id="demo"></p>
+
+        </div>
+        </div>
+        <script>
+            function validate(){
+                var email=document.getElementById("email").value;
+                var pass=document.getElementById("pass").value;
+                var userdata=JSON.parse(localStorage.getItem("users"));
+                for(var i=0;i<userdata.length;i++){
+                    if(userdata[i].Email==email && userdata[i].pwd==pass){
+                        let usersdata =new Array();
+                      usersdata.push({
+                                  Name:userdata[i].name,
+                                  Email:userdata[i].Email,
+                                  phno:userdata[i].phno,
+                                  password:userdata[i].pwd,
+                              })
+                              localStorage.setItem('curentusers', JSON.stringify(usersdata));
+                    
+                             location.href="./details.html";
+                             
+                          }   
+                          else{
+                              document.getElementById("demo").innerHTML="Invalid Credentials";
+                          }
+                    }
+                    
+                  
+            
+                }
+            
+            
+        </script>
+    </body>
+</html>

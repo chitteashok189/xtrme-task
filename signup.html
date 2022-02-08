@@ -1,0 +1,156 @@
+<html>
+    <head>
+       <style>
+           *{
+               margin: 0;
+               padding: 0;
+           }
+           div{
+               background-color:lightblue;
+               height: 700px;
+           }
+           .form{
+               box-shadow: 1px 1px 10px lightgray;
+               width:400px;
+               height: 500px;
+               position: relative;
+               top:50px;
+               left: 400px;
+               background-color: white;
+           }
+           input{
+               width: 300px;
+               padding: 7px;
+               margin-top: 20px;
+               margin-left: 50px;
+               outline: 0;
+           }
+           h1{
+               text-align: center;
+           }
+           button{
+               width:120px;
+             border:0;
+               padding: 8px;
+               margin-left: 140px;
+               margin-top: 30px;
+               cursor: pointer;
+               background-color: rgb(179, 166, 49);
+               font-weight: bold;
+               
+           }
+           p{
+               margin-left: 50px;
+               color: red;
+
+           }
+       </style>
+    </head>
+    <body>
+        <div>
+           <div class="form">
+               
+               <h1>Signup</h1>
+               <input type="text" placeholder="Enter Name" id="name">
+               <p id="msg"></p>
+               <input type="email" placeholder="Enter EmailID" id="email">
+               <p id="msg1"></p>
+               <input type="text" placeholder="Enter Phone Number" id="phno">
+               <p id="msg2"></p>
+               <input type="password" placeholder="Enter Password" id="pwd">
+               <p id="msg3"></p>
+               <input type="password" placeholder="Confirm Password" id="cpwd">
+               <p id="msg4"></p>
+            <button onclick="validate()">submit</button>
+       
+           </div>
+        </div>
+        <script>
+            function validate(){
+                event.preventDefault();
+                var name=document.getElementById("name").value;
+                var email=document.getElementById("email").value;
+                var phno=document.getElementById("phno").value;
+                var pwd=document.getElementById("pwd").value;
+                var cpwd=document.getElementById("cpwd").value;
+                var msg=document.getElementById("msg");
+                var msg1=document.getElementById("msg1");
+                var msg2=document.getElementById("msg2");
+                var msg3=document.getElementById("msg3");
+                var msg4=document.getElementById("msg4");
+                var regex=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9]+)(\.[a-zA-z]{3,})$/;
+                var regex1=/^[0-9]{10}$/;
+                var regex2=/^[a-zA-Z0-9]{10}$/;
+                let usersdata =new Array()
+                    usersdata = JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')): []
+
+                    //check for existing email
+
+                    if(usersdata.some((v)=>{return(v.email === email)})){
+                        alert('email already existed')
+
+                    } else{
+                    usersdata.push({
+                                name:name,
+                                Email:email,
+                                phno:phno,
+                                pwd:pwd
+                            })
+                            localStorage.setItem('users', JSON.stringify(usersdata));  
+                        }
+                if(name==""){
+                    msg.innerHTML="Plese Enter name";
+
+                }
+             
+                else{
+                    msg.innerHTML="";
+                }
+                if(email==""){
+                    msg1.innerHTML="Plese Enter EmailID";
+    
+                }
+                else if(regex.test(email)){
+                    msg1.innerHTML="";
+                }
+                else{
+                    msg1.innerHTML="Invalid EmailID";
+                }
+                if(phno==""){
+                    msg2.innerHTML="Plese Enter Phone number";
+                }
+                else if(regex1.test(phno)){
+                    msg2.innerHTML="";
+                }
+                else{
+                    msg2.innerHTML="Invalid Phone Number";
+                }
+                if(pwd==""){
+                    msg3.innerHTML="Plese Enter Password";
+                   
+                }
+                else if(regex2.test(pwd)){
+                    msg3.innerHTML="";
+                }
+                else{
+                    msg3.innerHTML="password must contain 10 digits and it should contain a-z,A-Z,0-9";
+                }
+               
+                if(cpwd==""){
+                 msg4.innerHTML="Plese Enter Confirm Password";
+                }
+             else if(pwd==cpwd){
+                 msg4.innerHTML="";
+             }
+             else{
+                 msg4.innerHTML="Password Don't matched";
+             
+             }
+             if(name!="" && email!="" && phno!="" && pwd!="" && cpwd!="" && regex1.test(phno) && regex.test(email) && regex2.test(pwd)){
+                 location.href="./login.html";
+             }   
+            }
+        </script>
+    
+    </body>
+</html>

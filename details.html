@@ -1,0 +1,66 @@
+<html>
+    <head>
+  <style>
+      *{
+          margin: 0;
+          padding: 0;
+      }
+      div{
+          height: 670px;
+          background-color:rosybrown;
+
+      }
+      .details{
+          width: 500px;
+          height: 350px;
+          box-shadow: 1px 1px 10px lightgray;
+          position: relative;
+          top:100px;
+          left: 400px;
+          background-color: white;
+      }
+      input{
+               width: 300px;
+               padding: 7px;
+               margin-top: 10px;
+               margin-left: 20px;
+               outline: 0;
+           }
+           p{
+               margin-left: 20px;
+               margin-top: 10px;
+               color: lightgreen
+           }
+           h1{
+               text-align: center;
+           }
+  </style>
+    </head>
+    <body>
+        <div>
+            <div class="details">
+                <h1>User Details</h1>
+                <p>Name:</p>
+                <input type="text"  id="name"><br>
+                <p>EmailID:</p>
+                <input type="email"  id="email"><br>
+                <p>Mobile:</p>
+               <input type="text" id="phnum"><br>
+               <p>Password:</p>
+               <input type="password" id="pwd">
+            </div>
+
+        </div>
+        <script>
+                var nam=document.getElementById("name");
+                var email=document.getElementById("email");
+                var phnum=document.getElementById("phnum");
+                var pwd=document.getElementById("pwd");
+                var userdata=JSON.parse(localStorage.getItem("curentusers"));
+                nam.value=userdata[0].Name;
+                email.value=userdata[0].Email;
+                phnum.value=userdata[0].phno;
+                pwd.value=userdata[0].password;
+        </script>
+    </body>
+</html>
